@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <title>{%block title%}Sam E-Classroom{%endblock%}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/master_css.css' %}">
+
+  </head>
+  <body >
+    
+    <!-- navigation bar -->
+              <nav class="navbar navbar-expand-lg  navbar-light bg-light fixed-top scrolling-navbar">
+                <div class="container" >
+                      <a class="navbar-brand" href="{% url 'index' %}" style="color:yellow; font-family:ALGERIAN;"><b>Home</b></a>
+                      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                           aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                           <span class="navbar-toggler-icon"></span>
+                       </button>
+                      <div class="collapse navbar-collapse" id="basicExampleNav" >
+                        <ul class=" navbar-nav  mr-auto smooth-scroll " >
+                                <li class="nav-item">
+                                   <a class="nav-link" href="{% url 'curriculum:standard_list' %}" style="color:yellow; font-family:ALGERIAN;"><b>Curriculum</b></a>
+                                </li>
+                                {% if user.is_superuser %}
+                                <li class="nav-item ">
+                                   <a class="nav-link" href="{% url 'admin:index' %}" style="color:yellow; font-family:ALGERIAN;"><b>Admin</b></span> </a>
+                                </li>
+                                {%endif%}
+                                {% if user.is_authenticated %}
+                                    <li class="nav-item  ">
+                                     <a class="nav-link" href="{% url 'user_logout' %}" style="color:yellow; font-family:ALGERIAN;"><b>Logout</b></a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{% url 'user_login' %}" style="color:yellow; font-family:ALGERIAN;"><b>Login</b></a>
+                                    </li>
+                                    <li class="nav-item " >
+                                       <a class="nav-link" href="{% url 'register' %}" style="color:yellow; font-family:ALGERIAN;"><b>Register</b></span> </a>
+                                    </li>
+                                {% endif %}
+                                <li class="nav-item">
+                                   <a class="nav-link" href="{% url 'contact' %}" style="color:yellow; font-family:ALGERIAN;"><b>Contact Us</b></a>
+                                </li>
+                                
+                                
+
+                        </ul>
+                      </div>
+                </div>
+              </nav>
+   
+              {% block image_block %}
+              <header>
+                <!--Image and mask-->
+                          <div id="intro" class="container-fluid d-flex align-items-center justify-content-center h-100">
+                            <div class="row d-flex justify-content-center text-center">
+                              <div class="col-md-10 text-white">
+                                <!-- heading -->
+                                <h2 class="display-4 font-weight-bold white-text  p-5 mb-2" style="color:#ff5722;" > Sam E-Classroom </h2>
+                
+                                <!-- divider -->
+                                <hr style="color:#ff5722;">
+                
+                                <!-- description -->
+                                <h4 class="white-text my-4">Welcome to Sam E-Classroom, scroll down to see more information 
+                                  or click on <span style="color:#ff5722;">Start</span> buttton to proceed.</h4>
+                                <a href="{% url 'curriculum:standard_list' %}"> <button type="button" class="btn" style="color:#ff5722;border-color:#ff5722;"> Start Now</button> </a>
+                
+                                <!-- feedback and github -->
+                                <div class="row d-flex mt-5 justify-content-center text-center">
+                                  <div class="col">
+                                    <a href="contact"> <button type="button" class="btn" style="color:#ff5722;border-color:#ff5722;">Send Feedback</button> </a>
+                                  </div>
+                                  <div class="col">
+                                    <a href="https://wa.me/message/Y4A6G5L7TFSCB1"> <button type="button" class="btn" style="color:#ff5722;border-color:#ff5722;"> WhatsApp</button> </a>
+                                  </div>
+                                  <div class="col">
+                                    <button onclick="myFunction()" class="btn" style="color:#ff5722;border-color:#ff5722;">light mode</button>
+                                      <script>function myFunction() {
+                                        var element = document.body;
+                                        element.classList.toggle("dark-mode");
+                                      }
+                                    </script>
+                                  </div>
+                
+                              </div>
+                            </div>
+                          </div>
+                
+</header>
+                
+{% endblock %}
+
+<div class="container">
+  {%block content%}
+
+<main class="mt-5">
+  <div class="container">
+    <!-- section 1 for standards-->
+
+    <section class="text-center">
+                  <h2 class="mb-5 font-weight-bold" style="color:#ff5722;">Dive Into Learning</h2>
+                  <!-- class row for description-->
+                  <div class="row d-flex justify-content-center mb-4">
+                    <!-- class column -->
+                    <div class="col-md-8">
+                      <p class="grey-text"><b>Welcome to Sam E-Classroom where you can get access to different subjects in each classes 
+                        ranging from JSS1 to SS3. Also you will get access to materials in different forms such as 
+                      video, presentations and notes. SO Click On <span style="color:#ff5722">Start Now</span></b> </p>
+                    </div>
+                  </div>
+<!-- class row2 for cards -->
+                  <div class="row">
+                          {% for standard in standards %}
+                          <div class="col-md-4 d-flex mb-5 justify-content-center">
+                            <div class="card text-center" style="width: 18rem;">
+                              <div class="card-body">
+                                <h4 class="card-title" style="color:#ff5722;">{{standard.name}}</h4>
+                                <p class="card-text">{{standard.description|truncatechars:75}}</p>
+                                {% if user.is_authenticated %}
+                                <a href="{% url 'curriculum:subject_list' slug=standard.slug %}" class="btn btn-primary" style="background-color:#00bcd4;">Start Learning</a>
+                                {%else%}
+                                <p>Register or login to start learning</p>
+                                <a href="{% url 'user_login' %}" class="btn btn-primary" style="background-color:#00bcd4;">Login</a>
+                                <a href="{% url 'register' %}" class="btn btn-primary" style="background-color:#00bcd4;">Register</a>
+                                {%endif%}
+                              </div>
+                            </div>
+                          </div>
+                          {% endfor %}
+                  </div>
+    </section>
+    <hr class="my-5" style="color:#ff5722;">
+    <!-- Section 2: Faculty ADMINISTRATOR -->    
+    <section class="text-center">
+      <h2 class="mb-5 font-weight-bold" style="color:#ff5722;"><b>Meet Our Faculty</b></h2>
+      <div class="row d-flex justify-content-center mb-4">
+          <div class="col-md-8">
+            <p class="grey-text"><b>Meet our faculty Administrator Dr. Samuel Emenike, the CEO and founder of Sam E-Classroom.</b></p>
+          </div>
+        <div class="container">
+          <h2 class="font-weight-bold" style="color:blue;">ADMINISTRATOR</h2>
+                    <div class="card-img-top">
+                        <img src="https://i.postimg.cc/FsGRPD6D/sam1.jpg" alt="no image found" width="450" height="450">
+                      <div class="card-body">
+                        <h3 class="font-weight-bold" style="color:black">Dr Samuel Emenike </h3>
+                      </div>
+                      <p class="card-title" style="color:black; font-family:ALGERIAN;"><b>Dr. Samuel Emenike is a Full-Stack Developer and Mobile App Developer.</b></p>
+                    </div>
+                      <a href="#demo" class="btn btn-primary" data-toggle="collapse">See Profile</a>
+                      <div id="demo" class="collapse">
+                        <br> <br>
+                      <table style="width:100%;  border: 2px solid black; color:black; text-align:left; font-family:ALGERIAN; padding:8px">
+                        <tr style="border:2px solid black">
+                          <td style="border:2px solid black; background-color: #dddddd">Full Name</td>
+                          <td style="border:2px solid black; background-color: #dddddd">Samuel Emenike Obinna</td>
+                        </tr>
+                        <tr style="border:2px solid black">
+                          <td style="border:2px solid black">Born</td>
+                          <td style="border:2px solid black"> 9th April 1980</td>
+                        </tr>
+                        <tr style="border:2px solid black">
+                          <td style="border:2px solid black; background-color: #dddddd">Nationality</td>
+                          <td style="border:2px solid black; background-color: #dddddd">Nigeria</td>
+                        </tr>
+                        <tr style="border:2px solid black">
+                          <td style="border:2px solid black">Alma mater</td>
+                          <td style="border:2px solid black">Lagos State University</td>
+                        </tr>
+                        <tr style="border:2px solid black">
+                          <td style="border:2px solid black; background-color: #dddddd">Occupation</td>
+                          <td style="border:2px solid black; background-color: #dddddd">Computer Programmer, Instrumentalist, Mobile App Developer</td>
+                        </tr>
+                        <tr style="border:2px solid black">
+                          <td style="border:2px solid black">Known for</td>
+                          <td style="border:2px solid black">Creating the Best Web-based_Instructional_Package</td>
+                        </tr>
+                        <tr style="border:2px solid black">
+                          <td style="border:2px solid black; background-color: #dddddd">Website</td>
+                          <td style="border:2px solid black; background-color: #dddddd">www.the_realsamuelemenike.com</td>
+                        </tr>
+                        </table>
+                        <br>
+                        <h4 style="text-align:left; color:#ff5722; font-family:ALGERIAN"><b>Early Life</b></h4>
+                        <p style="text-align:left; color:black; font-family:calibri; font-size:30px;">Samuel Emenike was born and grew up in Nigeria, where he received master's degree 
+                          in Computer Science from Lagos State University in 1995. He later Worked for various IT Company, 
+                          <span style="color:green">GLO</span>, <span style="color:blue">IT Horizon Nigeria Ltd.</span>,
+                           <span style="color:purple">INITS Limited</span>, <span style="color:red">NICHEGATE Technologies Limited.
+                           </span> </p>
+                          <br>
+                        <h4 style="text-align:left; color:#ff5722; font-family:ALGERIAN"><b>Personal Life</b></h4>
+                        <p style="text-align:left; color:black; font-family:calibri; font-size:30px;">Samuel Emenike Obinna is the brother
+                          of Isaiah Emenike, a type designer and Programmer. Just Samuel designed <span style="color:tomato">
+                          Web-based_Instructional_Package</span> that is used in many firms and organisation. 
+                          Samuel lives in Lagos with his family.</p>
+                        
+                      </div> 
+                    
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+<!-- section 3 for activities -->
+
+    <section class="text-center full-width container-fluid" id="event-section">
+            <h2 class="mb-3 mt-5 font-weight-bold" style="color:#ff5722;">Upcoming Events</h2>
+            <div class="row d-flex justify-content-center mb-4">
+                <div class="col-md-8">
+                  <p class="text-white">The following events below are the list of events that 
+                    are holding live on this platform, so click on <span style="color:#ff5722;"><u>Get Details</u></span> 
+                    to get information about each events.</p>
+                </div>
+              </div>
+            <div class="row d-flex justify-content-center mb-4">
+              <!-- col for event 1 -->
+                            <div class="card mb-3 mr-5 ml-3" style="max-width:450px;max-height:450px;">
+                                <img src="https://i.postimg.cc/2848cgWC/bennett-tobias-tqw-OJAv-UIh4-unsplash.jpg" alt="no image found" width="450" height="450">
+                                <div class="event-mask justify-content-center">
+                                  <div class="row d-flex justify-content-center"> <h2 class="font-weight-bold" style="color:#ff5722;">A Visit to Charity Home</h2> </div>
+                                  <div class="row d-flex justify-content-center">
+                                    <div class="col">
+                                    <p class="text-white">But Jesus said, In as much you have done to this ones, you have done also to Me. so let join 
+                                      hands to support the growths of this young children.</p>
+                                      </div>
+                                   </div>
+                                   <div class="row d-flex justify-content-center">
+                                     <a href="{% url 'user_login' %}" class="btn btn-primary mb-3" style="background-color:#ff5722;">Get Details</a>
+                                   </div>
+                                </div>
+                            </div>
+                            <!--col for event 2  -->
+                            <div class="card mb-3 mr-5 ml-3" style="max-width: 450px;max-height:450px;">
+                                <img src="https://i.postimg.cc/2jq46dqP/126.jpg" alt="no image found" width="450" height="450">
+                                <div class="event-mask">
+                                  <div class="row d-flex justify-content-center"> <h2 class="font-weight-bold" style="color:#ff5722;">Quiz Competition</h2> </div>
+                                  <div class="row d-flex justify-content-center">
+                                      <div class="col">
+                                          <p class="text-white">There is an online Quiz competition that is going on here on this platform, 
+                                            Click on the Enroll button below to get started.</p>
+                                        </div>
+                                   </div>
+                                   <div class="row d-flex justify-content-center">
+                                     <a href="{% url 'user_login' %}" class="btn btn-primary mb-3" style="background-color:#ff5722;">Enroll</a>
+                                   </div>
+                                </div>
+                            </div>
+                            <!--col for event 3  -->
+                            <div class="card mb-3 mr-5 ml-3" style="max-width: 450px;max-height:450px;">
+                              <img src="https://i.postimg.cc/KjmJXRfZ/daniel-schludi-m-AGZNECMc-Ug-unsplash.jpg" alt="no image found" width="450" height="450">
+                              <div class="event-mask">
+                                <div class="row d-flex justify-content-center"> <h2 class="font-weight-bold" style="color:#ff5722;">Get Vaccinated</h2> </div>
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col">
+                                        <p class="text-white">Covid-19 is real, So to stay protected from this virus, you have to go and get your 
+                                          covid-19 vaccine from the health centres. kindly click on <span style="color:#ff5722;">Get Details</span> to
+                                          see any recommended health centre around you.</p>
+                                      </div>
+                                 </div>
+                                 <div class="row d-flex justify-content-center">
+                                   <a href="{% url 'user_login' %}" class="btn btn-primary mb-3" style="background-color:#ff5722;">Get Details</a>
+                                 </div>
+                              </div>
+                          </div>
+                          <!--col for event 4  -->
+                          <div class="card mb-3 mr-5 ml-3" style="max-width: 450px;max-height:450px;">
+                            <img src="https://i.postimg.cc/5yNtjQM7/andrea-buccelli-Aq-Fetk-Kj-CC8-unsplash.jpg" alt="no image found" width="450" height="450">
+                            <div class="event-mask">
+                              <div class="row d-flex justify-content-center"> <h2 class="font-weight-bold" style="color:#ff5722;">Get Certified</h2> </div>
+                              <div class="row d-flex justify-content-center">
+                                  <div class="col">
+                                      <p class="text-white">Click Exam  to get certified after you finish the courses that we offer on this platform.</p>
+                                    </div>
+                               </div>
+                               <div class="row d-flex justify-content-center">
+                                 <a href="{% url 'user_login' %}" class="btn btn-primary mb-3" style="background-color:#ff5722;">Exam</a>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+
+                            <!-- button to get all activities -->
+                <div class="row d-flex justify-content-center mt-5 mb-3">
+                    <a href="{% url 'user_login' %}" class="btn btn-primary mb-4" style="background-color:#ff5722;">See All Events</a>
+                </div>
+            </div>
+    </section>
+</main>
+
+  {%endblock%}
+</div> 
+
+<footer class="page-footer" style="background-color:#cd6ff8">
+      <div class="container">
+        <div class="row mt-4">
+                  <div class="col-md-4 mt-4">
+                            <h3 style="color:yellow; font-family:Arial black; text-align:center">About Us</h3> 
+                            <p style="text-align:leftl; color:black;"><b>We offer varities of outstanding courses in each classes, and we make sure each course are explained 
+                              thoroughly. Through this platform, we will help you grow in knowledge on any subject that you choose 
+                              to offer here on our platform, We hope that you achieve alot as you journey each class.</b></p>
+                  </div>
+                  <div class="col-md-4 mt-4">
+                            <h3 style="font-family:Arial Black; color:yellow; text-align:left">Follow Us On</h3>
+                                <img src="https://i.postimg.cc/rFcCqbpM/facebook.png" alt="no image found" width="50" height="50">
+                                <img src="https://i.postimg.cc/xT1CnyLc/instagram-5.png" alt="no image found" width="50" height="50">
+                                <img src="https://i.postimg.cc/cJqR647g/twitter.png" alt="no image found" width="50" height="50"> 
+                                <img src="https://i.postimg.cc/9fSnmYq2/icons8-linkedin-circled-144.png" alt="no image found" width="50" height="50"> 
+                            
+                            
+                  </div>
+                  <div class="col-md-4 mt-4">
+                            <h3 style="text-align:center; color:yellow; font-family:Arial Black">Contact Us</h3>
+                            <ul>
+                              <li style="color:black"><b>LAGOS STATE UNIVERSITY: OJO, Lagos state, Nigeria</b></li>
+                              <li style="color:black"><b>EducationTechnology@gmail.com</b></li>
+                              <li style="color:black"><b>08022854677</b></li>
+                            </ul>
+                  </div>
+        </div>
+        <div class="footer-copyright text-center py-3">
+            <p style="color:white">© 2022 Copyright: Web-based_Instructional_Package</p>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
+  </body>
+</html>
