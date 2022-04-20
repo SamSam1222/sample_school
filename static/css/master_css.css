@@ -3,55 +3,10 @@ body,
 header,
 #intro {
     height: 100%;
-    width: 100;
-}
-#style { 
-  padding: 25px;
-  background-color: rgb(21, 240, 226);
-  color: rgb(0, 0, 0);
-  font-size: 25px;
 }
 
-.dark-mode {
-  background-color: rgb(7, 246, 226);
-  color: rgb(6, 6, 6);
-}
-
-
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 30px;
-  text-align: center;
-  margin: 5px 2px;
-  border-radius: 50%;
-}
-
-.fa:hover {
-  opacity: 0.7;
-}
-
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
-
-.fa-twitter { 
-  background: #55ACEE;
-  color: white;
-}
-
-.fa-histagram {
-  background: #125688;
-  color: white;
-}
-
-.fa-yahoo {
-  background: #430297;
-  color: white;
-}
 #intro {
-    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://i.postimg.cc/PrPynFrn/cdc-GDok-EYn-Ofn-E-unsplash.jpg"), no-repeat center center fixed;
+    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://i.postimg.cc/hjQNFTtk/doug-linstedt-j-EEYZsaxb-H4-unsplash.jpg"), no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -60,12 +15,12 @@ header,
 
 
 .bg-light{
-  background-color: transparent !important;
+  background-color:transparent !important;
   transition:0.5s ease;
   }
 
 .bg-light.scrolled{
-  background-color: #cd6ff8 !important;
+  background-color: #b2ebf2 !important;
 }
 
 
@@ -79,21 +34,21 @@ header,
 
 
 .navbar-expand-lg {
-    background-color: #cd6ff8;
+    background-color: #b2ebf2;
   }
   @media (max-width: 768px) {
     .navbar:not(.top-nav-collapse) {
-      background-color: #cd6ff8;
+      background-color: #b2ebf2;
     }
   }
   @media (min-width: 800px) and (max-width: 850px) {
     .navbar:not(.top-nav-collapse) {
-      background-color: #cd6ff8;
+      background-color: #b2ebf2;
     }
   }
 
 .text-white{
-  color: yellow;
+  color: white;
 }
 
 hr{
@@ -101,7 +56,7 @@ hr{
 }
 
 .btn-outline-white{
-  border-color: rgb(20, 225, 20);
+  border-color: cyan;
 }
 
 .event-mask{
@@ -144,7 +99,7 @@ hr{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-} 
+}
 /* breadcrumb class */
 /* Style the list */
 ul.breadcrumb {
@@ -174,12 +129,12 @@ ul.breadcrumb li a {
 
 /* Add a color on mouse-over */
 ul.breadcrumb li a:hover {
-  color: greenyellow;
+  color: #b2ebf2;
   text-decoration: underline;
 }
 
 .disabled-text{
-  color: rgb(236, 198, 101);
+  color: gray;
 }
 
 /* bradcrumb class over */
@@ -188,7 +143,7 @@ ul.breadcrumb li a:hover {
 
 .card-std{
     border-radius: 4px;
-    background: rgb(236, 243, 203);
+    background: #fff;
     box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
     transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
     padding: 14px 14px 14px 14px;
@@ -207,9 +162,9 @@ ul.breadcrumb li a:hover {
 /* get lesson button */
 .button-les {
   border-radius: 4px;
-  background-color: #021bf5;
+  background-color: #00bcd4;
   border: none;
-  color: yellow;
+  color: #FFFFFF;
   text-align: center;
   font-size: 20px;
   padding: 5px;
@@ -274,3 +229,35 @@ video {
   padding: 5px 10px;
 }
 
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter { 
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-histagram {
+  background: #125688;
+  color: white;
+}
+
+.fa-yahoo {
+  background: #430297;
+  color: white;
+}
