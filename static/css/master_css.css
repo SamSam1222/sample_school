@@ -134,7 +134,7 @@ ul.breadcrumb li a:hover {
 }
 
 .disabled-text{
-  color: greenyellow;
+  color: gray;
 }
 
 /* bradcrumb class over */
