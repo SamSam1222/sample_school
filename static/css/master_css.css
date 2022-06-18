@@ -6,7 +6,7 @@ header,
 }
 
 #intro {
-    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://i.postimg.cc/hjQNFTtk/doug-linstedt-j-EEYZsaxb-H4-unsplash.jpg"), no-repeat center center fixed;
+    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://i.postimg.cc/28v0ytSZ/cdc-GDok-EYn-Ofn-E-unsplash.jpg"), no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -69,7 +69,7 @@ hr{
 }
 
 #event-section {
-    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.postimg.cc/3RSbTg04/markus-spiske-WUeh-Agq-O5h-E-unsplash.jpg"), no-repeat center center fixed;
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.postimg.cc/XJGJ3dkn/nature-2.jpg"), no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -247,7 +247,7 @@ video {
   color: white;
 }
 
-.fa-twitter { 
+.fa-twitter {
   background: #55ACEE;
   color: white;
 }
