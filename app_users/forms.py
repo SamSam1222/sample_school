@@ -25,6 +25,7 @@ class UserProfileInfoForm(forms.ModelForm):
     student = 'student'
     parent = 'parent'
     user_types = [
+        (teacher, 'teacher'),
         (student, 'student'),
         (parent, 'parent'),
     ]
